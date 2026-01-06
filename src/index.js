@@ -1,1 +1,3 @@
-console.log("hi mom!");
+import { listProjects } from "./projectsManager.js";
+
+listProjects();
