@@ -4,7 +4,3 @@ export function createProject (name = "New Project", tasks = []) {
     tasks,
   };
 }
-
-export function addTask(project, task) {
-  project.tasks.push(task);
-}
