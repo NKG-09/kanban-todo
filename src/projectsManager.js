@@ -13,6 +13,6 @@ export function listProjects() {
     project === projects[activeProject]
     ? `Active: ${project.name}`
     : `${project.name}`
-  );
+  ).join('\n');
   console.log(projectNames);
 }
