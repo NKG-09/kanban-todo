@@ -6,7 +6,7 @@ let projectIndex = 0;
 export function addProject(name, tasks) {
   const project = createProject(name, tasks);
   projects.push(project);
-  selectProject(project);
+  selectProject(projects.length - 1);
   return project;
 }
 
@@ -22,8 +22,8 @@ export function listTasks(project = activeProject()) {
   console.log(output);
 }
 
-export function selectProject(project) {
-  projectIndex = projects.indexOf(project);
+export function selectProject(index) {
+  projectIndex = index;
 }
 
 export function removeProject(project) {
@@ -35,10 +35,10 @@ export function activeProject() {
 }
 
 export function listProjects() {
-  const projectNames = projects.map(project =>
+  const projectNames = projects.map((project, index) =>
     project === projects[projectIndex]
-    ? `Active: ${project.name}`
-    : `${project.name}`
+    ? `ACTIVE ${index + 1}: ${project.name}`
+    : `------ ${index + 1}: ${project.name}`
   ).join('\n');
   console.log(projectNames);
 }
