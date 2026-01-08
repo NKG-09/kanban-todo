@@ -14,6 +14,14 @@ export function addTask(task, project = activeProject()) {
  project.tasks.push(task);
 }
 
+export function listTasks(project = activeProject()) {
+  const output = project.tasks.map((task) =>
+  `Title: ${task.title}\nSubtitle:${task.subtitle}\n`
+  ).join("\n");
+
+  console.log(output);
+}
+
 export function selectProject(project) {
   projectIndex = projects.indexOf(project);
 }

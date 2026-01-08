@@ -1,4 +1,4 @@
-import { listProjects, addProject, addTask } from "./projectsManager.js";
+import { listProjects, addProject, addTask, listTasks } from "./projectsManager.js";
 import { createTask } from "./task.js";
 
 while (true) {
@@ -17,4 +17,5 @@ while (true) {
       details[2],
     ));
   }
+  else if (input === "list tasks") listTasks();
 }
