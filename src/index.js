@@ -1,4 +1,4 @@
-import { listProjects, addProject, addTask, listTasks } from "./projectsManager.js";
+import { listProjects, addProject, addTask, listTasks, selectProject } from "./projectsManager.js";
 import { createTask } from "./task.js";
 
 while (true) {
@@ -18,4 +18,7 @@ while (true) {
     ));
   }
   else if (input === "list tasks") listTasks();
+  else if (input.slice(0, 7) === "select " && input.length > 7) {
+    selectProject(Number(input.split(" ")[1]) - 1);
+  }
 }
