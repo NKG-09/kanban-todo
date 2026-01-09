@@ -16,7 +16,7 @@ export function addTask(task, project = activeProject()) {
 
 export function listTasks(project = activeProject()) {
   const output = project.tasks.map((task) =>
-  `Title: ${task.title}\nSubtitle:${task.subtitle}\n`
+    Object.keys(task).map(key => `${key}: ${task[key]}`).join("\n")
   ).join("\n");
 
   console.log(output);
