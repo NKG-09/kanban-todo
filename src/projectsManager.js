@@ -30,6 +30,14 @@ export function removeProject(project) {
   projects.splice(projects.indexOf(project), 1);
 }
 
+export function editProject(key, value, project = activeProject()) {
+  project[key] = value;
+}
+
+export function editTask(taskIndex, key, value, project = activeProject()) {
+  project.tasks[taskIndex][key] = value;
+}
+
 export function activeProject() {
   return projects[projectIndex];
 }
