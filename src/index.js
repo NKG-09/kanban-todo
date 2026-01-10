@@ -1,13 +1,14 @@
-import { listProjects, addProject, addTask, listTasks, selectProject, editProject, editTask } from "./projectsManager.js";
+import { listProjects, addProject, addTask, listTasks, editProject, editTask, manager, selectProject } from "./projectsManager.js";
 import { createTask } from "./task.js";
 
+// Loop prompts for input till user types exit
 while (true) {
   let input = prompt("input:");
-  if (!input) continue;
 
   if (input === "exit") break;
-  else if (input === "add") {
+  else if (input === "add") { // Add a new project or task
     const toAdd = prompt("what to add?");
+    // Prompt the user for the data of what to add and then add it
     if (toAdd === "project") addProject(
       prompt("project name:")
     );
@@ -20,16 +21,15 @@ while (true) {
       prompt("task state:"),
     ));
   }
-  else if (input === "list") {
+  else if (input === "list") { // Listing projects or tasks
     const toList = prompt("what to list?");
     if (toList === "project") listProjects();
     if (toList === "task") listTasks();
   }
-  else if (input === "select") {
-    const toSelect = Number(prompt("what to select?"));
-    selectProject(toSelect - 1);
+  else if (input === "select") { // Selecting a project based on its index
+    selectProject(Number(prompt("what to select?")) - 1);
   }
-  else if (input === "edit") {
+  else if (input === "edit") { // Edit a project's or task's data
     const toEdit = prompt("what to edit?");
     if (toEdit === "project") {
       const keyValuePair = prompt("enter what to edit (key=value):").split("=");
