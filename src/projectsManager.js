@@ -46,7 +46,7 @@ export function selectProject(key) {
 }
 
 // Edit a project's details with a key = value pair
-export function editProject(key, value, project = proj205835ects.get(activeProject)) {
+export function editProject(key, value, project = projects.get(activeProject)) {
   project[key] = value;
   saveData();
 }
