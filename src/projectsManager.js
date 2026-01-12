@@ -53,7 +53,11 @@ export function editProject(key, value, project = projects.get(activeProject)) {
 
 // Remove a project with its key
 export function removeProject(project = activeProject) {
+  // If an index number is given instead of a key, select the key with that index
+  if (typeof project === "number") project = [...projects.keys()][project];
+
   projects.delete(project);
+  if (project === activeProject) selectProject(0);
   saveData();
 }
 
