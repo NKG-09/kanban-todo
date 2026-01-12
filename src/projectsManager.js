@@ -85,6 +85,11 @@ export function editTask(taskIndex, key, value, project = projects.get(activePro
   saveData();
 }
 
+export function removeTask(taskIndex, project = projects.get(activeProject)) {
+  project.tasks.splice(taskIndex, 1);
+  saveData();
+}
+
 // List all tasks and their content
 export function listTasks(project = projects.get(activeProject)) {
   const output = project.tasks.map((task) =>

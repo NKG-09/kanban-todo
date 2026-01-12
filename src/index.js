@@ -1,4 +1,15 @@
-import { listProjects, addProject, addTask, listTasks, editProject, editTask, manager, selectProject, removeProject } from "./projectsManager.js";
+import {
+  listProjects, 
+  addProject,
+  addTask,
+  listTasks,
+  editProject,
+  editTask,
+  manager,
+  selectProject,
+  removeProject,
+  removeTask,
+} from "./projectsManager.js";
 import { createTask } from "./task.js";
 
 // Loop prompts for input till user types exit
@@ -42,6 +53,12 @@ while (true) {
     }
   }
   else if (input === "remove") {
-    removeProject(Number(prompt("what to delete?")) - 1);
+    const toRemove = prompt("what to remove?");
+    if (toRemove === "task") {
+      removeTask(Number(prompt("which task to remove?")) - 1);
+    }
+    else if (toRemove === "project") {
+      removeProject(Number(prompt("what to delete?")) - 1);
+    }
   }
 }
