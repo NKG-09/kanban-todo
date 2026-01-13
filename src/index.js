@@ -1,24 +1,31 @@
 import {
-  listProjects, 
   addProject,
-  addTask,
-  listTasks,
-  editProject,
-  editTask,
-  manager,
   selectProject,
+  editProject,
+  listProjects,
   removeProject,
-  removeTask,
 } from "./projectsManager.js";
+
+import {
+  addTask,
+  editTask,
+  listTasks,
+  removeTask,
+} from "./tasksManager.js";
+
 import { createTask } from "./task.js";
 
-// Loop prompts for input till user types exit
+// Prompt user repeatedly until they exit
 while (true) {
   let input = prompt("input:");
 
+  // Break out of the loop if the user exits
   if (input === "exit") break;
-  else if (input === "add") { // Add a new project or task
+
+  // Add a new project or task
+  if (input === "add") {
     const toAdd = prompt("what to add?");
+
     // Prompt the user for the data of what to add and then add it
     if (toAdd === "project") addProject(
       prompt("project name:")
@@ -32,33 +39,43 @@ while (true) {
       prompt("task state:"),
     ));
   }
-  else if (input === "list") { // Listing projects or tasks
-    const toList = prompt("what to list?");
-    if (toList === "project") listProjects();
-    if (toList === "task") listTasks();
+
+  // Select a project by index
+  if (input === "select") {
+    const index = Number(prompt("what to select?")) - 1;
+    selectProject(index);
   }
-  else if (input === "select") { // Selecting a project based on its index
-    selectProject(Number(prompt("what to select?")) - 1);
-  }
-  else if (input === "edit") { // Edit a project's or task's data
+
+  // Select and edit a project or task
+  if (input === "edit") {
     const toEdit = prompt("what to edit?");
+
     if (toEdit === "project") {
       const keyValuePair = prompt("enter what to edit (key=value):").split("=");
       editProject(keyValuePair[0], keyValuePair[1]);
     }
+
     if (toEdit === "task") {
-      const taskIndex = Number(prompt("which task to edit?"));
+      const index = Number(prompt("which task to edit?"));
       const keyValuePair = prompt("enter what to edit (key=value):").split("=");
-      editTask(taskIndex, keyValuePair[0], keyValuePair[1]);
+      editTask(index, keyValuePair[0], keyValuePair[1]);
     }
   }
-  else if (input === "remove") {
+
+  // Listing projects or tasks
+  if (input === "list") {
+    const toList = prompt("what to list?");
+
+    if (toList === "project") listProjects();
+    if (toList === "task") listTasks();
+  }
+
+  // Remove a project or task by index
+  if (input === "remove") {
     const toRemove = prompt("what to remove?");
-    if (toRemove === "task") {
-      removeTask(Number(prompt("which task to remove?")) - 1);
-    }
-    else if (toRemove === "project") {
-      removeProject(Number(prompt("what to delete?")) - 1);
-    }
+    const index = Number(prompt(`which ${toRemove} to remove?`)) - 1;
+
+    if (toRemove === "task") removeTask(index);
+    if (toRemove === "project") removeProject(index);
   }
 }
